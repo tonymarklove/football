@@ -160,12 +160,12 @@ invert_border = 100.0
 
 [node name="Ball" type="KinematicBody2D" parent="." index="4"]
 
-editor/display_folded = true
 input_pickable = true
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 2 )
+_sections_unfolded = [ "collision" ]
 
 [node name="Collision" type="CollisionShape2D" parent="Ball" index="0"]
 
