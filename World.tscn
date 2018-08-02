@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Ball/Ball.gd" type="Script" id=1]
-[ext_resource path="res://Ball/football.png" type="Texture" id=2]
-[ext_resource path="res://Player/Player.gd" type="Script" id=3]
-[ext_resource path="res://Player/player.png" type="Texture" id=4]
-[ext_resource path="res://Player/BallControlArea.gd" type="Script" id=5]
-[ext_resource path="res://Player/BallTrajectory.gd" type="Script" id=6]
+[ext_resource path="res://Camera.gd" type="Script" id=1]
+[ext_resource path="res://Ball/Ball.gd" type="Script" id=2]
+[ext_resource path="res://Ball/football.png" type="Texture" id=3]
+[ext_resource path="res://Player/Player.gd" type="Script" id=4]
+[ext_resource path="res://Player/player.png" type="Texture" id=5]
+[ext_resource path="res://Player/BallControlArea.gd" type="Script" id=6]
+[ext_resource path="res://Player/BallTrajectory.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -32,6 +33,7 @@ height = 12.0
 
 [node name="Touchlines" type="Area2D" parent="." index="0"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -62,19 +64,19 @@ invert_enable = false
 invert_border = 100.0
 _sections_unfolded = [ "Texture", "Transform" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="1"]
+[node name="Camera" type="Camera2D" parent="." index="1"]
 
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 1, 1 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
 limit_bottom = 10000000
 limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
 smoothing_enabled = false
 smoothing_speed = 5.0
 offset_v = 0.0
@@ -86,6 +88,8 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
+script = ExtResource( 1 )
+_sections_unfolded = [ "Smoothing" ]
 
 [node name="Goal1" type="Area2D" parent="." index="2"]
 
@@ -161,7 +165,7 @@ input_pickable = true
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Collision" type="CollisionShape2D" parent="Ball" index="0"]
 
@@ -170,24 +174,25 @@ shape = SubResource( 3 )
 [node name="Sprite" type="Sprite" parent="Ball" index="1"]
 
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Player" type="KinematicBody2D" parent="." index="5"]
 
+editor/display_folded = true
 position = Vector2( -28, 0 )
 rotation = 1.5708
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Player" index="0"]
 
 scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="1"]
@@ -198,10 +203,10 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="BallControlArea" type="Node2D" parent="Player" index="2"]
 
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="BallTrajectory" type="Node2D" parent="Player" index="3"]
 
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 
