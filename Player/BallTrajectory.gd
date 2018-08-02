@@ -7,6 +7,9 @@ var offset = 0.0
 var crawl_speed = 20
 const antialiased = false
 
+func _ready():
+	set_as_toplevel(true)
+
 func _process(delta):
 	offset = offset + (crawl_speed * delta)
 	update()

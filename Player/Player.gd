@@ -6,6 +6,9 @@ const STARTING_VECTOR = Vector2(0,-1)
 const JOYSTICK_DEADZONE = 0.2
 const PLAYER_SPEED = 5
 
+onready var ball = get_node("/root/World/Ball")
+onready var ball_trajectory = get_node("BallTrajectory")
+
 # Return a velocity normalized between -1 and 1
 func input_move_velocity():
 	var move = Vector2()
@@ -42,6 +45,10 @@ func _physics_process(delta):
 		self.rotation = -look_vector.angle_to(STARTING_VECTOR)
 	elif move_velocity:
 		self.rotation = -move_velocity.angle_to(STARTING_VECTOR)
+
+	# Set position of ball trajectory indicator
+	ball_trajectory.rotation = self.rotation
+	ball_trajectory.position = ball.position
 
 	var collision = move_and_collide(velocity)
 
