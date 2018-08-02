@@ -1,11 +1,11 @@
 extends Node2D
 
-var line_color = Color(1,1,1,1)
+var line_color = Color(1,1,1,0.5)
 var line_width = 2
 var gap_length = 5
 var offset = 0.0
-var crawl_speed = 10
-const antialiased = true
+var crawl_speed = 20
+const antialiased = false
 
 func _process(delta):
 	offset = offset + (crawl_speed * delta)
@@ -32,6 +32,13 @@ func draw_dotted_line(from, to, segment_count=1):
 
 	var segment_from = from + (direction * offset)
 
-	for i in range(segment_count):
+	for i in range(segment_count-1):
 		draw_line(segment_from, segment_from + segment_vector, line_color, line_width, antialiased)
 		segment_from = segment_from + segment_vector + gap_vector
+
+	# Last segment might be split in two because of wrap-around caused by the offset
+	if offset <= segment_length:
+		draw_line(segment_from, to, line_color, line_width, antialiased)
+
+	if offset > gap_length:
+		draw_line(from, direction * (offset - gap_length), line_color, line_width, antialiased)
