@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Ball/Ball.gd" type="Script" id=1]
 [ext_resource path="res://Ball/football.png" type="Texture" id=2]
 [ext_resource path="res://Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://Player/player.png" type="Texture" id=4]
+[ext_resource path="res://Player/BallControlArea.gd" type="Script" id=5]
+[ext_resource path="res://Player/BallTrajectory.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -65,7 +67,7 @@ _sections_unfolded = [ "Texture", "Transform" ]
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 0.5, 0.5 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
@@ -193,5 +195,13 @@ _sections_unfolded = [ "Transform" ]
 rotation = 1.5708
 shape = SubResource( 4 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="BallControlArea" type="Node2D" parent="Player" index="2"]
+
+script = ExtResource( 5 )
+
+[node name="BallTrajectory" type="Node2D" parent="Player" index="3"]
+
+script = ExtResource( 6 )
 
 
