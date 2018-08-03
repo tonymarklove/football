@@ -5,6 +5,7 @@ var line_width = 2
 var gap_length = 5
 var offset = 0.0
 var crawl_speed = 20
+var line_length = 100
 const antialiased = false
 
 func _ready():
@@ -16,7 +17,7 @@ func _process(delta):
 
 func _draw():
 	if visible:
-		draw_dotted_line(Vector2(), Vector2(0, -100), 10)
+		draw_dotted_line(Vector2(), Vector2(0, -line_length), 10)
 
 func draw_dotted_line(from, to, segment_count=1):
 	if segment_count < 1: return
